@@ -1,0 +1,499 @@
+<meta name="robots" content="noindex,nofollow">
+<title>Momentum Ekonomi</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one lugn kolumn (max 1120px), hero med kontaktkort till höger, sektioner skilda av luft – inte kort på allt. */
+:root{
+  --bg:#f8fbf9;          /* nästan vit med grön ton */
+  --bg-2:#eef6f2;        /* sektionsfält */
+  --card:#ffffff;
+  --fg:#1a2e29;          /* mörk, inte svart */
+  --fg-2:#5b6f68;
+  --line:#d6e4de;
+  --accent:#1f8a6f;      /* havsgrön, ljusare än skogsgrön */
+  --accent-fg:#ffffff;
+  --accent-soft:#d9f1e8; /* ljus mint */
+  --warm:#e8b85c;        /* gul för platshållare */
+  --display:"Outfit","Segoe UI",system-ui,sans-serif;
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121d1a;--bg-2:#172622;--card:#1d2f2a;--fg:#eaf2ee;--fg-2:#a3b5ac;--line:#2c413a;
+    --accent:#5fd3b4;--accent-fg:#0f2a23;--accent-soft:#1d4a3e;--warm:#e2b45a;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121d1a;--bg-2:#172622;--card:#1d2f2a;--fg:#eaf2ee;--fg-2:#a3b5ac;--line:#2c413a;
+  --accent:#5fd3b4;--accent-fg:#0f2a23;--accent-soft:#1d4a3e;--warm:#e2b45a;color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;margin:0}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,5.6vw,4rem);font-weight:700}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px}
+section{padding-block:72px}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:1.15rem;color:var(--fg-2);max-width:60ch}
+.muted{color:var(--fg-2)}
+.note{font-size:.85rem;color:var(--fg-2)}
+.stack{display:grid;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;border-radius:999px;padding:14px 22px;border:2px solid transparent;cursor:pointer;font-family:var(--body);font-size:1rem;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.btn-primary{background:var(--accent);color:var(--accent-fg)}
+.btn-ghost{border-color:var(--line);background:transparent;color:var(--fg)}
+.todo{background:var(--warm);color:#17212b;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.03em;white-space:nowrap}
+
+/* Topp */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.3rem;text-decoration:none;letter-spacing:-.01em}
+.logo svg{width:32px;height:32px;flex:none}
+.logo .m-bg{fill:var(--accent)}.logo .m-line{stroke:var(--accent-fg)}.logo .m-tip{stroke:var(--accent-soft)}
+nav.main{display:flex;gap:22px;margin-left:auto;font-weight:600;font-size:.95rem}
+nav.main a{text-decoration:none;color:var(--fg-2)}
+nav.main a:hover{color:var(--fg)}
+.top .btn{padding:10px 18px;font-size:.92rem}
+@media (max-width:860px){nav.main{display:none}}
+
+/* Hero */
+.hero{padding-block:72px 56px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-12%;top:-30%;width:58%;height:170%;background:linear-gradient(112deg,transparent 48%,var(--accent-soft) 48%,var(--accent-soft) 54%,transparent 54%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center;position:relative}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.tagline{font-family:var(--display);font-weight:700;font-size:1.3rem;color:var(--accent)}
+.people{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:16px;box-shadow:0 12px 40px -24px rgba(23,33,43,.35)}
+.people h3{font-size:1rem;color:var(--fg-2);font-family:var(--body);font-weight:600}
+.person{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.1rem}
+.person strong{display:block;font-size:1.05rem}
+.person span{display:block;color:var(--fg-2);font-size:.92rem}
+.person .tel{font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero::before{display:none}}
+
+/* Trygghetsrad */
+.trust{border-block:1px solid var(--line);background:var(--bg-2);padding-block:18px}
+.trust ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px 36px;justify-content:center;font-weight:600;font-size:.95rem}
+.trust li{display:flex;align-items:center;gap:8px}
+.trust li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+
+/* Rutnät */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:860px){.grid3{grid-template-columns:1fr}}
+.sec-head{display:grid;gap:10px;margin-bottom:36px;max-width:64ch}
+
+/* För dig som */
+.who article{border-top:3px solid var(--accent);padding-top:18px;display:grid;gap:10px;align-content:start}
+.who ul{margin:0;padding-left:18px;color:var(--fg-2)}
+
+/* Priser */
+.pricing{background:var(--bg-2)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px}
+.seg button{border:0;background:transparent;font:inherit;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--fg-2)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+.plans{margin-top:28px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:16px;position:relative;align-content:start}
+.plan.hi{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.plan .tag{position:absolute;top:-12px;left:22px;background:var(--accent);color:var(--accent-fg);font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.05em}
+.price{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-family:var(--body);font-weight:600;font-size:.95rem;color:var(--fg-2);margin-left:4px}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;color:var(--fg-2)}
+.plan li{padding-left:22px;position:relative}
+.plan li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.plan li.q{color:var(--fg);font-weight:700}
+.plan li.q::before{content:"★";color:var(--accent)}
+.plan .btn{justify-self:start}
+
+/* Fas */
+.phase{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.phase article{padding:28px 26px;display:grid;gap:12px;align-content:start;border-right:1px solid var(--line)}
+.phase article:last-child{border-right:0}
+.phase .step{font-family:var(--display);font-size:.85rem;font-weight:700;color:var(--fg-2);letter-spacing:.08em;text-transform:uppercase}
+.phase h3{font-size:1.6rem}
+.phase ul{margin:0;padding-left:18px;color:var(--fg-2)}
+@media (max-width:860px){.phase{grid-template-columns:1fr}.phase article{border-right:0;border-bottom:1px solid var(--line)}.phase article:last-child{border-bottom:0}}
+
+/* Trappan */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:end}
+.ladder article{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:8px}
+.ladder article:nth-child(1){min-height:180px}.ladder article:nth-child(2){min-height:230px}.ladder article:nth-child(3){min-height:280px;border-color:var(--accent)}
+.ladder .lvl{font-size:.8rem;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
+@media (max-width:860px){.ladder{grid-template-columns:1fr}.ladder article{min-height:0!important}}
+
+/* Om oss */
+.about{background:var(--bg-2)}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.member{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start}
+.photo{aspect-ratio:3/4;max-width:100%;border-radius:12px;background:repeating-linear-gradient(135deg,var(--line) 0 6px,var(--card) 6px 14px);display:grid;place-items:center;font-size:.75rem;color:var(--fg-2);text-align:center;padding:8px}
+.member p{color:var(--fg-2);font-size:.97rem}
+@media (max-width:860px){.team{grid-template-columns:1fr}}
+
+/* Citat */
+.quote{text-align:center;max-width:62ch;margin-inline:auto;display:grid;gap:14px}
+.quote blockquote{margin:0;font-family:var(--display);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;line-height:1.3}
+.quote cite{font-style:normal;color:var(--fg-2);font-size:.95rem}
+
+/* Kontakt */
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+form{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:14px}
+label{display:grid;gap:6px;font-weight:600;font-size:.92rem}
+input,select{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+.direct{display:grid;gap:18px}
+.direct dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0}
+.direct dt{color:var(--fg-2)}
+.direct dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.ok{background:var(--accent-soft);border-radius:var(--r);padding:26px;display:grid;gap:8px}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{background:var(--bg-2)}
+.faq .list{max-width:72ch;display:grid;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0;font-family:var(--display);font-weight:700;font-size:1.15rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;color:var(--accent);flex:none;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 20px;color:var(--fg-2);max-width:65ch}
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:.9rem;color:var(--fg-2)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="m-bg" cx="32" cy="32" r="32"/><path class="m-line" d="M14 44l12-12 8 7 14-16" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path class="m-tip" d="M38 23h10v10" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>momentum ekonomi</a>
+    <nav class="main" aria-label="Huvudmeny">
+      <a href="#fordig">För dig som…</a>
+      <a href="#priser">Priser</a>
+      <a href="#fas">Så växer vi med er</a>
+      <a href="#omoss">Om oss</a>
+      <a href="#faq">Vanliga frågor</a>
+    </nav>
+    <a class="btn btn-primary" href="#boka">Boka ett första samtal</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="stack">
+      <p class="eyebrow">Redovisningsbyrå för aktiebolag upp till 15 mkr</p>
+      <h1>Redovisningsbyrån för småbolag som vill växa.</h1>
+      <p class="tagline">Vi ger ditt bolag fart.</p>
+      <p class="lead">Fast månadspris, inga dumma frågor och en egen konsult som svarar i telefon. Vi sköter bokföringen så att du kan sköta bolaget.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#boka">Boka ett första samtal</a>
+        <a class="btn btn-ghost" href="#priser">Se vad det kostar</a>
+      </div>
+      <p class="note">Första samtalet är gratis och utan förpliktelser. Du får ett prisförslag samma dag.</p>
+    </div>
+    <aside class="people" aria-label="Kontakta oss direkt">
+      <h3>Ring oss direkt, inte en växel</h3>
+      <div class="person">
+        <div class="avatar">VS</div>
+        <div><strong>Ville Sandgren Strada</strong><span>Medgrundare. Brinner för företagande och ekonomi.</span><span class="tel">070-000 00 00 <span class="todo">nummer</span></span></div>
+      </div>
+      <div class="person">
+        <div class="avatar">RR</div>
+        <div><strong>Robert Rimgård</strong><span>Medgrundare. Certifierad redovisningsekonom.</span><span class="tel">070-000 00 01 <span class="todo">nummer</span></span></div>
+      </div>
+      <p class="note">Vi svarar inom en arbetsdag. Alltid en av oss två, aldrig info@.</p>
+    </aside>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <ul>
+      <li>Certifierad redovisningsekonom</li>
+      <li>Fortnox-partner</li>
+      <li>Fast pris, ingen bindningstid</li>
+      <li>Frågor ingår i priset</li>
+    </ul>
+  </div>
+</div>
+
+<section class="who" id="fordig">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">För dig som…</p>
+      <h2>Olika bolag, olika behov. Samma lugn.</h2>
+      <p class="lead">Vi jobbar med aktiebolag som omsätter upp till 15 miljoner. Hitta dig själv här.</p>
+    </div>
+    <div class="grid3">
+      <article>
+        <h3>…driver ensam eller med några få</h3>
+        <p class="muted">Du vill slippa tänka på moms, deklaration och Skatteverket, men ändå ha koll.</p>
+        <ul><li>Löpande bokföring i Fortnox</li><li>Moms, arbetsgivaravgifter och deklaration</li><li>Bokslut och årsredovisning</li><li>Lön till dig själv, rätt utdelning</li></ul>
+      </article>
+      <article>
+        <h3>…har anställda</h3>
+        <p class="muted">Löner ska ut i tid och siffrorna ska gå att lita på när du fattar beslut.</p>
+        <ul><li>Löner, semester och AGI</li><li>Månadsrapport som går att läsa</li><li>Likviditetskoll inför varje lön</li><li>Stöd vid nyanställning och avtal</li></ul>
+      </article>
+      <article>
+        <h3>…driver konsult- eller tjänstebolag</h3>
+        <p class="muted">Fakturering, debiteringsgrad och vad som faktiskt blir kvar till dig.</p>
+        <ul><li>Fakturering och påminnelser</li><li>Lön kontra utdelning, 3:12-regler</li><li>Periodisering av projekt</li><li>Planering inför bokslut</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="priser">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Priser</p>
+      <h2>Fast pris per månad. Välj din omsättning.</h2>
+      <p class="lead">Priset beror på hur mycket som händer i bolaget, inte på hur många frågor du ställer. Frågor via mejl och telefon ingår alltid.</p>
+    </div>
+    <div class="seg" role="group" aria-label="Omsättning per år">
+      <button type="button" data-band="0" aria-pressed="true">Upp till 1 mkr</button>
+      <button type="button" data-band="1" aria-pressed="false">1–3 mkr</button>
+      <button type="button" data-band="2" aria-pressed="false">3–10 mkr</button>
+      <button type="button" data-band="3" aria-pressed="false">10–15 mkr</button>
+    </div>
+    <div class="grid3 plans">
+      <article class="plan">
+        <h3>Bas</h3>
+        <p class="price"><span data-price="0">895</span><small>kr/mån</small></p>
+        <p class="muted">Allt ett bolag måste ha, skött i tid.</p>
+        <ul>
+          <li>Löpande bokföring i Fortnox</li>
+          <li>Momsdeklaration och AGI</li>
+          <li>Bokslut, årsredovisning och deklaration</li>
+          <li>Lön till en ägare</li>
+          <li class="q">Frågor via mejl och telefon ingår</li>
+        </ul>
+        <a class="btn btn-ghost" href="#boka">Välj Bas</a>
+      </article>
+      <article class="plan hi">
+        <span class="tag">Vanligast</span>
+        <h3>Växa</h3>
+        <p class="price"><span data-price="1">1 495</span><small>kr/mån</small></p>
+        <p class="muted">För dig som har anställda eller vill ha bättre koll.</p>
+        <ul>
+          <li>Allt i Bas</li>
+          <li>Löner för upp till 5 anställda</li>
+          <li>Månadsrapport med kommentar</li>
+          <li>Planeringsmöte inför bokslut</li>
+          <li class="q">Frågor via mejl och telefon ingår</li>
+        </ul>
+        <a class="btn btn-primary" href="#boka">Välj Växa</a>
+      </article>
+      <article class="plan">
+        <h3>Nästa steg</h3>
+        <p class="price"><span data-price="2">2 495</span><small>kr/mån</small></p>
+        <p class="muted">Ekonomichef på deltid, utan att anställa en.</p>
+        <ul>
+          <li>Allt i Växa</li>
+          <li>Budget och prognos varje kvartal</li>
+          <li>Kvartalsmöte om siffrorna och nästa steg</li>
+          <li>Stöd vid finansiering, bank och investerare</li>
+          <li class="q">Frågor via mejl och telefon ingår</li>
+        </ul>
+        <a class="btn btn-ghost" href="#boka">Välj Nästa steg</a>
+      </article>
+    </div>
+    <p class="note" style="margin-top:18px">Priser exkl. moms. Ingen bindningstid, en månads uppsägning. Fortnox-licens tillkommer. <span class="todo">Exempelpriser, sätt era egna</span></p>
+  </div>
+</section>
+
+<section id="fas">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">I vilken fas är ni?</p>
+      <h2>Vi är med från första fakturan till nästa steg.</h2>
+      <p class="lead">Behoven ändras när bolaget växer. Vi ändras med dem, så att du slipper byta byrå på vägen.</p>
+    </div>
+    <div class="phase">
+      <article>
+        <p class="step">Fas 1</p>
+        <h3>Starta</h3>
+        <p class="muted">Du har precis startat eller funderar på att gå från enskild firma till AB.</p>
+        <ul><li>Bolagsbildning och F-skatt</li><li>Fortnox uppsatt och kopplat till banken</li><li>Rutiner för kvitton och fakturor</li><li>Vad du kan ta ut i lön första året</li></ul>
+      </article>
+      <article>
+        <p class="step">Fas 2</p>
+        <h3>Växa</h3>
+        <p class="muted">Fler kunder, kanske en första anställd. Du behöver veta var du står varje månad.</p>
+        <ul><li>Löner och arbetsgivarfrågor</li><li>Månadsrapport du faktiskt läser</li><li>Likviditet och kassaflöde</li><li>Skatteplanering inför bokslut</li></ul>
+      </article>
+      <article>
+        <p class="step">Fas 3</p>
+        <h3>Nästa steg</h3>
+        <p class="muted">Du ska ta in lån, en delägare, köpa ett bolag eller sälja ditt.</p>
+        <ul><li>Budget, prognos och nyckeltal</li><li>Underlag till bank och investerare</li><li>Värdering och ägarfrågor</li><li>Holdingbolag och utdelningsstruktur</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Från bokföring till ekonomichef</p>
+      <h2>Börja med det nödvändiga. Växla upp när du vill.</h2>
+    </div>
+    <div class="ladder">
+      <article>
+        <p class="lvl">Steg 1</p>
+        <h3>Bokföring</h3>
+        <p class="muted">Rätt, i tid och i Fortnox. Moms, löner, bokslut och deklaration.</p>
+      </article>
+      <article>
+        <p class="lvl">Steg 2</p>
+        <h3>Rapporter</h3>
+        <p class="muted">Månadsrapport på en sida med det som spelar roll: resultat, kassa, kundfordringar och vad vi tycker du ska göra.</p>
+      </article>
+      <article>
+        <p class="lvl">Steg 3</p>
+        <h3>CFO-stöd</h3>
+        <p class="muted">Budget, prognos, prissättning och samtal om nästa steg. Du får en ekonomichef några timmar i månaden, inte en till lön.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="omoss">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Om oss</p>
+      <h2>Vi är Momentum. En entreprenör och en ekonom.</h2>
+      <p class="lead">Ville har drivit bolag i tio år och Robert är certifierad redovisningsekonom med bakgrund på KPMG. Tillsammans täcker vi både hur det är att vara företagare och hur siffrorna ska se ut. Du har alltid en av oss som din kontakt.</p>
+    </div>
+    <div class="team">
+      <div class="member">
+        <div class="photo">Bild på<br>Ville</div>
+        <div class="stack">
+          <h3>Ville Sandgren Strada</h3>
+          <p>Entreprenör sedan tio år som brinner för företagande och ekonomi. Har skött sin egen löpande bokföring hela vägen och vet hur det känns att få en faktura från byrån för en fråga som tog två minuter. Därför ingår frågorna hos oss.</p>
+          <p><strong>070-000 00 00</strong> · ville@momentumekonomi.se <span class="todo">bekräfta</span></p>
+        </div>
+      </div>
+      <div class="member">
+        <div class="photo">Bild på<br>Robert</div>
+        <div class="stack">
+          <h3>Robert Rimgård</h3>
+          <p>Certifierad redovisningsekonom och civilekonom med bakgrund på KPMG, där han arbetade med revision, bokföring och årsredovisningar enligt K2 och K3. Ser till att siffrorna håller när banken, Skatteverket eller en köpare tittar på dem.</p>
+          <p><strong>070-000 00 01</strong> · robert@momentumekonomi.se <span class="todo">bekräfta</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="quote">
+      <p class="eyebrow">Vad kunderna säger <span class="todo">läggs in när ni har de första</span></p>
+      <blockquote>"Jag ringer och får svar samma dag. Det har jag aldrig haft med en byrå förut."</blockquote>
+      <cite>Exempelcitat · Förnamn Efternamn, vd, Exempelbolaget AB</cite>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Vanliga frågor</p>
+      <h2>Inga dumma frågor. Här är de vi får oftast.</h2>
+    </div>
+    <div class="list">
+      <details open>
+        <summary>Vad betyder det att frågor ingår?</summary>
+        <p>Att du kan ringa eller mejla när du undrar över moms, en faktura, lön kontra utdelning eller om du får dra av något. Du får svar utan att klockan tickar. Större uppdrag, som en värdering eller en omstrukturering, lämnar vi alltid pris på i förväg.</p>
+      </details>
+      <details>
+        <summary>Kan vi byta byrå mitt i räkenskapsåret?</summary>
+        <p>Ja. Vi hämtar det som redan är bokfört från din nuvarande byrå, går igenom det och fortsätter därifrån. Bytet brukar ta en till två veckor och du behöver bara ge oss kontakten till den gamla byrån.</p>
+      </details>
+      <details>
+        <summary>Måste vi använda Fortnox?</summary>
+        <p>Vi jobbar i Fortnox eftersom det ger dig och oss samma bild i realtid, och det är kopplat till banken, Skatteverket och de flesta kassasystem. Har du ett annat system i dag hjälper vi dig flytta över. Fortnox-licensen betalar du direkt till Fortnox och den ingår inte i vårt pris.</p>
+      </details>
+      <details>
+        <summary>Vad händer om vi växer ur vårt paket?</summary>
+        <p>Då byter vi paket från nästa månad. Priset följer omsättningen och antalet anställda, så du betalar aldrig för mer än bolaget är. Vi säger till i god tid när vi ser att det är dags.</p>
+      </details>
+      <details>
+        <summary>Finns det någon bindningstid?</summary>
+        <p>Nej. Avtalet löper månadsvis med en månads uppsägning. Säger du upp dig får du med dig all bokföring, eftersom den ligger i ditt eget Fortnox.</p>
+      </details>
+      <details>
+        <summary>Vad behöver jag själv göra varje månad?</summary>
+        <p>Fota kvitton i Fortnox-appen, godkänna leverantörsfakturor och attestera löner. Resten sköter vi. Räkna med tio till femton minuter i veckan om du har ett mindre bolag.</p>
+      </details>
+      <details>
+        <summary>Gör ni också min privata deklaration?</summary>
+        <p>Ja, för dig som ägare. Lön, utdelning och K10-blanketten hänger ihop med bolagets siffror, så det blir både enklare och rätt när samma person gör båda. Det ingår i paketen Växa och Nästa steg och läggs till i Bas för ett fast pris.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="boka">
+  <div class="wrap">
+    <div class="direct">
+      <p class="eyebrow">Boka ett första samtal</p>
+      <h2>Berätta om bolaget. Vi återkommer med ett prisförslag samma dag.</h2>
+      <p class="lead">Trettio minuter på telefon eller Teams. Vi går igenom hur det ser ut i dag och vad vi skulle göra annorlunda.</p>
+      <dl>
+        <dt>Telefon</dt><dd>070-000 00 00</dd>
+        <dt>E-post</dt><dd>hej@momentumekonomi.se</dd>
+        <dt>Besök</dt><dd>Gatuadress 1, 000 00 Ort <span class="todo">byt ut</span></dd>
+      </dl>
+    </div>
+    <form id="bokaform" novalidate>
+      <label>Ditt namn <input id="f-namn" name="namn" type="text" autocomplete="name" required></label>
+      <label>Bolag <input id="f-bolag" name="bolag" type="text" autocomplete="organization"></label>
+      <label>Telefon <input id="f-tel" name="tel" type="tel" autocomplete="tel" required></label>
+      <label>Omsättning per år
+        <select id="f-oms" name="omsattning">
+          <option>Upp till 1 mkr</option><option>1–3 mkr</option><option>3–10 mkr</option><option>10–15 mkr</option><option>Nystartat, ingen än</option>
+        </select>
+      </label>
+      <button class="btn btn-primary" type="submit">Boka ett första samtal</button>
+      <p class="note">Vi ringer upp inom en arbetsdag. Inga nyhetsbrev, ingen försäljning.</p>
+    </form>
+    <div class="ok" id="bokaok" hidden>
+      <h3>Tack! Vi hör av oss inom en arbetsdag.</h3>
+      <p class="muted">Vill du inte vänta? Ring 070-000 00 00 direkt.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 1.6 Momentum AB · Org.nr 559542-7005</span>
+    <span>hej@momentumekonomi.se · 070-000 00 00</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Exempelpriser per omsättningsband: [Bas, Växa, Nästa steg]
+  var bands=[[895,1495,2495],[1295,1995,3295],[1995,2995,4995],[2995,4495,6995]];
+  var fmt=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g," ")};
+  var btns=document.querySelectorAll(".seg button");
+  function pick(i){
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(+b.dataset.band===i))});
+    document.querySelectorAll("[data-price]").forEach(function(el){el.textContent=fmt(bands[i][+el.dataset.price])});
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){pick(+b.dataset.band)})});
+  pick(0);
+  var f=document.getElementById("bokaform");
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var namn=document.getElementById("f-namn"),tel=document.getElementById("f-tel");
+    if(!namn.value.trim()){namn.focus();return}
+    if(!tel.value.trim()){tel.focus();return}
+    f.hidden=true;document.getElementById("bokaok").hidden=false;
+  });
+})();
+</script>
